@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Moonlight Cafe</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+      background: linear-gradient(to bottom, #f7f1ea, #efe4d6);
+      color: #3b2f2a;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 60px 20px;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 80px 20px 60px;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      padding: 8px 16px;
+      border-radius: 999px;
+      background-color: #e8d7c5;
+      color: #6b4f3a;
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-size: 56px;
+      font-weight: 800;
+      margin-bottom: 16px;
+      color: #2f241f;
+    }
+
+    .hero p {
+      font-size: 20px;
+      color: #6d5a4d;
+      margin-bottom: 36px;
+    }
+
+    .hero-card {
+      max-width: 420px;
+      margin: 0 auto 36px;
+      background-color: rgba(255,255,255,0.55);
+      border: 1px solid rgba(120, 88, 63, 0.12);
+      border-radius: 28px;
+      padding: 26px;
+      box-shadow: 0 12px 30px rgba(82, 57, 39, 0.08);
+      backdrop-filter: blur(8px);
+    }
+
+    .hero-card img {
+      width: 100%;
+      max-width: 280px;
+      height: 280px;
+      object-fit: cover;
+      border-radius: 22px;
+      display: block;
+      margin: 0 auto 20px;
+    }
+
+    .hero-card-text {
+      font-size: 18px;
+      font-weight: 600;
+      color: #5f4a3b;
+      margin-bottom: 18px;
+    }
+
+    .cta-button {
+      display: inline-block;
+      background-color: #6f4e37;
+      color: #fffaf5;
+      text-decoration: none;
+      padding: 16px 34px;
+      font-size: 18px;
+      font-weight: 800;
+      border-radius: 16px;
+      box-shadow: 0 8px 0 #563a27;
+      transition: all 0.15s ease;
+    }
+
+    .cta-button:hover {
+      background-color: #7d5940;
+    }
+
+    .cta-button:active {
+      transform: translateY(4px);
+      box-shadow: 0 4px 0 #563a27;
+    }
+
+    .section {
+      margin-top: 70px;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 34px;
+      font-weight: 800;
+      margin-bottom: 28px;
+      color: #2f241f;
+    }
+
+    .intro-box {
+      max-width: 760px;
+      margin: 0 auto;
+      background: rgba(255,255,255,0.65);
+      border-radius: 24px;
+      padding: 28px;
+      box-shadow: 0 10px 24px rgba(82, 57, 39, 0.07);
+      border: 1px solid rgba(120, 88, 63, 0.1);
+    }
+
+    .intro-box p {
+      font-size: 17px;
+      color: #5e4c40;
+      text-align: center;
+    }
+
+    .service-list {
+      max-width: 760px;
+      margin: 30px auto 0;
+      display: grid;
+      gap: 16px;
+    }
+
+    .service-item {
+      background-color: rgba(255,255,255,0.7);
+      border-radius: 18px;
+      padding: 20px 24px;
+      font-size: 18px;
+      font-weight: 700;
+      color: #4b392f;
+      text-align: center;
+      box-shadow: 0 8px 20px rgba(82, 57, 39, 0.06);
+      border: 1px solid rgba(120, 88, 63, 0.08);
+    }
+
+    .highlight {
+      max-width: 900px;
+      margin: 70px auto 0;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .highlight-card {
+      background: rgba(255,255,255,0.72);
+      border-radius: 22px;
+      padding: 28px 22px;
+      text-align: center;
+      box-shadow: 0 10px 24px rgba(82, 57, 39, 0.06);
+      border: 1px solid rgba(120, 88, 63, 0.08);
+    }
+
+    .highlight-card h3 {
+      font-size: 20px;
+      margin-bottom: 10px;
+      color: #3b2f2a;
+    }
+
+    .highlight-card p {
+      color: #6d5a4d;
+      font-size: 15px;
+    }
+
+    .bottom-cta {
+      text-align: center;
+      margin-top: 80px;
+      padding: 40px 20px 10px;
+    }
+
+    .bottom-cta p {
+      font-size: 20px;
+      font-weight: 700;
+      color: #5b4637;
+      margin-bottom: 20px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 50px 20px 20px;
+      color: #8a7465;
+      font-size: 14px;
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        padding-top: 50px;
+      }
+
+      .hero h1 {
+        font-size: 38px;
+      }
+
+      .hero p {
+        font-size: 17px;
+      }
+
+      .hero-card img {
+        height: 220px;
+      }
+
+      .section-title {
+        font-size: 28px;
+      }
+
+      .service-item {
+        font-size: 16px;
+      }
+
+      .highlight {
+        grid-template-columns: 1fr;
+      }
+
+      .cta-button {
+        width: 100%;
+        max-width: 320px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <section class="hero">
+      <div class="hero-badge">Reservation Landing Page</div>
+      <h1>Moonlight Cafe</h1>
+      <p>감성적인 공간, 편하게 예약 및 문의하세요</p>
+
+      <div class="hero-card">
+        <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=800&q=80" alt="카페 이미지" />
+        <div class="hero-card-text">지금 바로 예약 상담을 시작해보세요</div>
+        <a href="https://open.kakao.com/o/shVSG8oi" target="_blank" rel="noopener noreferrer" class="cta-button">
+          ☕ 예약 및 문의하기
+        </a>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">카페 소개</h2>
+      <div class="intro-box">
+        <p>
+          따뜻한 분위기와 감성적인 공간을 담은 카페 랜딩페이지 예시입니다.<br />
+          방문자가 망설이지 않고 바로 예약하거나 문의할 수 있도록<br />
+          간결한 흐름과 선명한 버튼 중심으로 구성했습니다.
+        </p>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">서비스 안내</h2>
+      <div class="service-list">
+        <div class="service-item">✔ 카페 예약 문의 연결</div>
+        <div class="service-item">✔ 1페이지 랜딩페이지 제작</div>
+        <div class="service-item">✔ 모바일 최적화</div>
+        <div class="service-item">✔ 빠른 제작 진행</div>
+      </div>
+    </section>
+
+    <section class="highlight">
+      <div class="highlight-card">
+        <h3>깔끔한 구성</h3>
+        <p>복잡하지 않게 핵심 정보만 담아 빠르게 전달합니다.</p>
+      </div>
+      <div class="highlight-card">
+        <h3>문의 중심 설계</h3>
+        <p>버튼 위치와 문구를 통해 자연스럽게 행동을 유도합니다.</p>
+      </div>
+      <div class="highlight-card">
+        <h3>모바일 대응</h3>
+        <p>휴대폰에서도 편하게 보고 문의할 수 있도록 제작합니다.</p>
+      </div>
+    </section>
+
+    <section class="bottom-cta">
+      <p>분위기 있는 랜딩페이지로 예약 문의를 시작해보세요</p>
+      <a href="https://open.kakao.com/o/shVSG8oi" target="_blank" rel="noopener noreferrer" class="cta-button">
+        ☕ 지금 예약 문의하기
+      </a>
+    </section>
+
+    <footer>
+      © 2026 Moonlight Cafe. All Rights Reserved.
+    </footer>
+  </div>
+</body>
+</html>
