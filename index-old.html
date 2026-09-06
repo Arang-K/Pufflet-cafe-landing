@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pufflet Cafe</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    html { scroll-behavior: smooth; }
+  </style>
+</head>
+<body class="bg-[#f8f5f1] text-stone-800">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-50 backdrop-blur bg-[#f8f5f1]/80 border-b border-stone-200">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="#" class="text-2xl font-bold tracking-tight">Pufflet Cafe</a>
+      <nav class="hidden md:flex gap-6 text-sm">
+        <a href="#about" class="hover:text-amber-700">소개</a>
+        <a href="#gallery" class="hover:text-amber-700">갤러리</a>
+        <a href="#visit" class="hover:text-amber-700">방문정보</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="px-6 pt-16 pb-12">
+    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-center">
+      <div>
+        <p class="text-sm font-semibold text-amber-700 mb-4">Warm mood · Coffee · Dessert</p>
+        <h1 class="text-4xl md:text-6xl font-bold leading-tight">
+          하루가 잠시 <br />
+          부드러워지는 공간,
+          <span class="text-amber-700">Pufflet Cafe</span>
+        </h1>
+        <p class="mt-6 text-stone-600 leading-7">
+          따뜻한 커피 향과 포근한 무드가 머무는 곳.  
+          사진으로도 예쁘지만, 직접 오면 더 좋은 공간을 준비했어요.
+        </p>
+
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href="#visit" class="bg-amber-600 text-white px-6 py-3 rounded-2xl font-semibold hover:opacity-90">
+            위치 보기
+          </a>
+          <a href="#gallery" class="border border-stone-300 px-6 py-3 rounded-2xl font-semibold hover:bg-white">
+            사진 보기
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <img
+          src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=1200&q=80"
+          alt="Pufflet Cafe 대표 이미지"
+          class="w-full h-[460px] object-cover rounded-[28px] shadow-xl"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="px-6 py-16">
+    <div class="max-w-5xl mx-auto text-center">
+      <p class="text-sm font-semibold text-amber-700 mb-3">About</p>
+      <h2 class="text-3xl md:text-4xl font-bold">작지만 오래 머물고 싶은 카페</h2>
+      <p class="mt-6 text-stone-600 leading-8 max-w-3xl mx-auto">
+        Pufflet Cafe는 커피 한 잔과 디저트, 그리고 기분 좋은 여백을 담은 공간입니다.
+        혼자 와도 좋고, 누군가와 함께 와도 편안한 분위기를 만들고 싶었어요.
+        조용히 쉬어가고 싶은 날, 가볍게 들르기 좋은 카페예요.
+      </p>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section id="gallery" class="px-6 py-16">
+    <div class="max-w-6xl mx-auto">
+      <div class="flex items-end justify-between mb-8">
+        <div>
+          <p class="text-sm font-semibold text-amber-700 mb-2">Gallery</p>
+          <h2 class="text-3xl font-bold">공간의 무드를 담았어요</h2>
+        </div>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <img
+          src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=900&q=80"
+          alt="커피 이미지"
+          class="w-full h-80 object-cover rounded-[24px] shadow-md"
+        />
+        <img
+          src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=900&q=80"
+          alt="카페 내부 이미지"
+          class="w-full h-80 object-cover rounded-[24px] shadow-md"
+        />
+        <img
+          src="https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=900&q=80"
+          alt="디저트 이미지"
+          class="w-full h-80 object-cover rounded-[24px] shadow-md"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- Visit Info -->
+  <section id="visit" class="px-6 py-16">
+    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-8 items-stretch">
+      <div class="bg-white rounded-[28px] p-8 shadow-lg">
+        <p class="text-sm font-semibold text-amber-700 mb-3">Visit</p>
+        <h2 class="text-3xl font-bold">방문 안내</h2>
+
+        <div class="mt-8 space-y-5 text-stone-700">
+          <div>
+            <p class="text-sm text-stone-500 mb-1">주소</p>
+            <p class="font-medium">서울시 송파구 석촌동 123 Pufflet Cafe</p>
+          </div>
+          <div>
+            <p class="text-sm text-stone-500 mb-1">운영시간</p>
+            <p class="font-medium">매일 11:00 - 21:00</p>
+          </div>
+          <div>
+            <p class="text-sm text-stone-500 mb-1">문의</p>
+            <p class="font-medium">카카오톡 오픈채팅 문의 가능</p>
+          </div>
+        </div>
+
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a
+            href="https://map.naver.com/"
+            target="_blank"
+            class="bg-amber-600 text-white px-5 py-3 rounded-2xl font-semibold hover:opacity-90"
+          >
+            네이버 지도 보기
+          </a>
+        
+          <a
+            href="https://open.kakao.com/o/shVSG8oi"
+            target="_blank"
+            class="border border-stone-300 px-5 py-3 rounded-2xl font-semibold hover:bg-stone-50"
+          >
+            카카오 문의
+          </a>
+          <a href="pufflet-cafe.html"
+   class="border px-6 py-3 rounded-xl font-semibold hover:bg-neutral-100">
+  카페 소개 보기
+</a>
+        </div>
+      </div>
+
+      <div class="rounded-[28px] overflow-hidden shadow-lg min-h-[420px]">
+        <iframe
+  src="https://www.google.com/maps/embed?pb=..."
+  width="100%"
+  height="100%"
+  style="border:0; min-height:420px;"
+  loading="lazy"
+  referrerpolicy="no-referrer-when-downgrade"
+  class="rounded-[28px]"
+></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer CTA -->
+  <section class="px-6 py-20">
+    <div class="max-w-5xl mx-auto bg-stone-900 text-white rounded-[32px] px-8 py-14 text-center shadow-2xl">
+      <p class="text-sm font-semibold text-amber-300 mb-3">Pufflet Cafe</p>
+      <h2 class="text-3xl md:text-5xl font-bold leading-tight">
+        오늘, 잠시 쉬어가고 싶다면
+      </h2>
+      <p class="mt-5 text-stone-300 max-w-2xl mx-auto leading-7">
+        향 좋은 커피와 편안한 공간이 기다리고 있어요.  
+        위치를 확인하고 가볍게 들러보세요.
+      </p>
+      <div class="mt-8 flex justify-center flex-wrap gap-3">
+        <a
+          href="https://map.naver.com/"
+          target="_blank"
+          class="bg-amber-500 text-stone-900 px-6 py-3 rounded-2xl font-bold hover:opacity-90"
+        >
+          길찾기
+        </a>
+        <a
+          href="https://open.kakao.com/o/shVSG8oi"
+          target="_blank"
+          class="border border-stone-600 px-6 py-3 rounded-2xl font-semibold hover:bg-stone-800"
+        >
+          문의하기
+        </a>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>

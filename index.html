@@ -1,194 +1,915 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Pufflet Cafe</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500;6..96,600&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Bodoni+Moda:opsz,wght@6..96,400;6..96,700&family=DM+Serif+Display&family=Fugaz+One&display=swap" rel="stylesheet">
+
   <style>
-    html { scroll-behavior: smooth; }
+
+    /* =========================
+       RESET
+    ========================= */
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: #f8f7f3;
+      color: #111;
+      font-family: "DM Sans", sans-serif;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+
+    /* =========================
+       MAIN SCROLL AREA
+
+       ★ 일부러 짧게 잡음
+    ========================= */
+
+    .scroll-stage {
+      height: 620vh;
+      position: relative;
+    }
+
+    .main-screen {
+      position: sticky;
+      top: 0;
+
+      width: 100%;
+      height: 100vh;
+
+      background: #f8f7f3;
+
+      overflow: hidden;
+    }
+
+
+    /* =========================
+       HEADER
+    ========================= */
+
+    .header {
+      position: absolute;
+      top: 0;
+      left: 0;
+
+      width: 100%;
+
+      padding: 30px 55px;
+
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+
+      z-index: 50;
+    }
+
+    .header-left,
+    .header-right {
+      display: flex;
+      gap: 28px;
+
+      font-size: 13px;
+    }
+
+    .header-right {
+      justify-self: end;
+    }
+
+    .header-logo {
+      font-family: "Playfair Display", serif;
+
+      font-size: 31px;
+      font-weight: 500;
+
+      letter-spacing: -1.5px;
+    }
+
+
+    /* =========================
+       CENTER TITLE
+    ========================= */
+
+    .main-copy {
+      position: absolute;
+
+      top: 44%;
+      left: 50%;
+
+      transform: translate(-50%, -50%);
+
+      width: 90%;
+
+      text-align: center;
+
+      z-index: 20;
+
+      pointer-events: none;
+    }
+
+    .main-warning {
+      font-family: "Bodoni Moda", serif;
+      font-size: clamp(16px, 1.8vw, 28px);
+      font-weight: 500;
+      letter-spacing: -1px;
+      text-transform: uppercase;
+      margin-bottom: 26px;
+    }
+
+    .main-title {
+      font-family: "Bodoni Moda", serif;
+
+      font-size: clamp(110px, 17vw, 265px);
+
+      line-height: 0.60;
+      font-weight: 500;
+
+      letter-spacing: -14px;
+
+      text-transform: lowercase;
+
+      white-space: nowrap;
+
+      transform: translateY(12px);
+    }
+
+
+    /* =========================
+       FOOD OBJECTS
+    ========================= */
+
+    .food-object {
+      position: absolute;
+
+      z-index: 8;
+
+      pointer-events: none;
+
+      will-change: transform, opacity;
+
+      opacity: 0;
+    }
+
+    /*
+      ★ 이 세 이미지는 나중에
+      배경 없는 PNG로 넣을 것
+    */
+
+    .coffee-object {
+      width: min(46vw, 640px);
+
+      left: 8%;
+      top: 100%;
+    }
+
+    .cake-object {
+      width: min(32vw, 430px);
+
+      right: 5%;
+      top: 105%;
+    }
+
+    .drink-object {
+      width: min(34vw, 500px);
+
+      left: 34%;
+      top: 110%;
+    }
+
+    .drink-tilt {
+  display: block;
+  width: 100%;
+  height: auto;
+
+  transform-origin: 50% 80%;
+
+  animation: drinkTilt 4.5s ease-in-out infinite;
+    }
+
+@keyframes drinkTilt {
+  0% {
+    transform: rotate(-2deg) translateY(0);
+  }
+
+  50% {
+    transform: rotate(2deg) translateY(-3px);
+  }
+
+  100% {
+    transform: rotate(-2deg) translateY(0);
+  }
+}
+
+
+    /* =========================
+       MENU LINKS
+
+       첫 이미지가 올라온 다음 등장
+    ========================= */
+
+    .menu-links {
+  position: absolute;
+  left: 50%;
+  bottom: 55px;
+  transform: translate(-50%, 80px);
+
+  display: flex;
+  align-items: baseline;
+  gap: 34px;
+
+  z-index: 30;
+  opacity: 0;
+}
+
+/* 1. COFFEE
+   굵고 압축된 포스터 느낌
+*/
+.link-coffee {
+  font-family: "Anton", sans-serif;
+  font-size: 34px;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+}
+
+/* 2. DESSERT
+   약간 패션 매거진 느낌
+*/
+.link-dessert {
+  font-family: "DM Serif Display", serif;
+  font-size: 34px;
+  font-style: italic;
+  letter-spacing: -1px;
+}
+
+/* 3. SIGNATURE
+   개성 강하고 약간 장난스러운 느낌
+*/
+.link-signature {
+  font-family: "Fugaz One", sans-serif;
+  font-size: 29px;
+  text-transform: lowercase;
+  letter-spacing: -1px;
+}
+
+/* 4. VISIT
+   좁고 길쭉한 타이포
+*/
+.link-visit {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 38px;
+  letter-spacing: 1px;
+}
+
+.menu-links a {
+  display: inline-block;
+  transition: transform .2s ease;
+}
+
+.menu-links a:hover {
+  transform: translateY(-4px) rotate(-2deg);
+}
+
+    /* =========================
+       ENTER BUTTON
+    ========================= */
+
+    .enter-button {
+      position: absolute;
+
+      left: 50%;
+      bottom: 175px;
+
+      transform: translate(-50%);
+
+      z-index: 35;
+
+      background: #111;
+      color: #fff;
+
+      padding: 14px 32px;
+
+      font-size: 12px;
+
+      opacity: 0;
+
+      pointer-events: none;
+
+      transition: opacity 1.2s ease;
+    }
+
+    .enter-button.visible {
+      opacity: 1;
+
+      pointer-events: auto;
+    }
+
+
+    /* =========================
+       SIMPLE INFO / FOOTER
+
+       ★ 마지막에 이것만 실제로 내려옴
+    ========================= */
+
+    .info-section {
+      min-height: 340px;
+
+      background: #f8f7f3;
+
+      border-top: 1px solid #111;
+
+      padding: 38px 55px 45px;
+    }
+
+    .info-top {
+      display: grid;
+
+      grid-template-columns:
+        1.3fr
+        1fr
+        1fr;
+
+      gap: 50px;
+
+      align-items: start;
+    }
+
+    .info-brand {
+      font-family: "Playfair Display", serif;
+
+      font-size: clamp(30px, 3vw, 46px);
+
+      line-height: 1.05;
+    }
+
+    .info-title {
+      font-size: 11px;
+
+      font-weight: 600;
+
+      margin-bottom: 12px;
+
+      text-transform: uppercase;
+
+      letter-spacing: 1.3px;
+    }
+
+    .info-text {
+      font-size: 12px;
+
+      line-height: 1.9;
+
+      color: #555;
+    }
+
+    .info-links {
+      display: flex;
+      flex-direction: column;
+
+      gap: 7px;
+
+      font-size: 12px;
+    }
+
+
+    /* FOOTER BOTTOM */
+
+    .footer-bottom {
+      margin-top: 55px;
+
+      padding-top: 22px;
+
+      border-top: 1px solid rgba(0,0,0,.18);
+
+      display: grid;
+
+      grid-template-columns: 1fr auto 1fr;
+
+      align-items: center;
+
+      font-size: 11px;
+
+      color: #666;
+    }
+
+    .footer-nav {
+      justify-self: end;
+
+      display: flex;
+
+      gap: 22px;
+    }
+
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 768px) {
+
+      .scroll-stage {
+        height: 210vh;
+      }
+
+      .header {
+        padding: 22px;
+
+        display: flex;
+        justify-content: center;
+      }
+
+      .header-left,
+      .header-right {
+        display: none;
+      }
+
+      .header-logo {
+        font-size: 25px;
+      }
+
+      .main-warning {
+        font-size: 14px;
+      }
+
+      .main-title {
+        font-size: clamp(75px, 23vw, 130px);
+
+        letter-spacing: -6px;
+      }
+
+      .coffee-object {
+        width: 75vw;
+        left: -15%;
+      }
+
+      .cake-object {
+        width: 52vw;
+        right: -10%;
+      }
+
+      .drink-object {
+        width: 42vw;
+        left: 30%;
+      }
+
+      .menu-icons {
+        gap: 12px;
+        bottom: 45px;
+      }
+
+      .menu-icon {
+        min-width: 72px;
+      }
+
+      .icon-box {
+        width: 48px;
+        height: 48px;
+
+        font-size: 22px;
+      }
+
+      .menu-icon span {
+        font-size: 9px;
+      }
+
+
+      /* INFO */
+
+      .info-section {
+        padding: 40px 25px;
+      }
+
+      .info-top {
+        grid-template-columns: 1fr;
+
+        gap: 35px;
+      }
+
+      .footer-bottom {
+        grid-template-columns: 1fr;
+
+        gap: 18px;
+
+        text-align: center;
+      }
+
+      .footer-nav {
+        justify-self: center;
+      }
+    }
+
   </style>
 </head>
-<body class="bg-[#f8f5f1] text-stone-800">
 
-  <!-- Header -->
-  <header class="sticky top-0 z-50 backdrop-blur bg-[#f8f5f1]/80 border-b border-stone-200">
-    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-      <a href="#" class="text-2xl font-bold tracking-tight">Pufflet Cafe</a>
-      <nav class="hidden md:flex gap-6 text-sm">
-        <a href="#about" class="hover:text-amber-700">소개</a>
-        <a href="#gallery" class="hover:text-amber-700">갤러리</a>
-        <a href="#visit" class="hover:text-amber-700">방문정보</a>
-      </nav>
-    </div>
-  </header>
 
-  <!-- Hero -->
-  <section class="px-6 pt-16 pb-12">
-    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-center">
-      <div>
-        <p class="text-sm font-semibold text-amber-700 mb-4">Warm mood · Coffee · Dessert</p>
-        <h1 class="text-4xl md:text-6xl font-bold leading-tight">
-          하루가 잠시 <br />
-          부드러워지는 공간,
-          <span class="text-amber-700">Pufflet Cafe</span>
+<body>
+
+
+  <!-- =========================================
+       MAIN STICKY SCROLL
+  ========================================== -->
+
+  <section class="scroll-stage">
+
+    <div class="main-screen">
+
+
+      <!-- HEADER -->
+
+      <header class="header">
+
+        <div class="header-left">
+          <a href="#">Menu</a>
+          <a href="#">About</a>
+          <a href="#">Archive</a>
+        </div>
+
+
+        <a href="#" class="header-logo">
+          Pufflet Cafe
+        </a>
+
+
+        <div class="header-right">
+          <a href="#">Instagram</a>
+          <a href="#info">Contact</a>
+        </div>
+
+      </header>
+
+
+
+      <!-- CENTER TEXT -->
+
+      <div class="main-copy">
+
+        <div class="main-warning">
+          CAUTION: THIS IS COFFEE, NOT A BAD DAY.
+        </div>
+
+        <h1 class="main-title">
+          Pufflet cafe
         </h1>
-        <p class="mt-6 text-stone-600 leading-7">
-          따뜻한 커피 향과 포근한 무드가 머무는 곳.  
-          사진으로도 예쁘지만, 직접 오면 더 좋은 공간을 준비했어요.
+
+      </div>
+
+
+
+      <!--
+        =========================================
+        TRANSPARENT FOOD IMAGES
+
+        나중에 images 폴더에 넣을 파일:
+
+        coffee-cutout.png
+        cake-cutout.png
+        signature-drink.png
+        =========================================
+      -->
+
+      <img
+      src="images/brunch-plate.png"
+      alt="Brunch Plate"
+      class="food-object coffee-object"
+      >
+
+      <img
+      src="images/cake-cutout.png"
+      alt="Cake"
+      class="food-object cake-object"
+      >
+
+      <div class="food-object drink-object">
+       <img
+        src="images/signature-drink.png"
+        alt="Signature Drink"
+        class="drink-tilt"
+       >
+      </div>
+
+
+
+      <!-- MENU links -->
+
+    <div class="menu-links">
+     <a href="#coffee" class="link-coffee">Coffee</a>
+     <a href="#dessert" class="link-dessert">Dessert</a>
+     <a href="#signature" class="link-signature">Signature</a>
+     <a href="#info" class="link-visit">Visit</a>
+    </div>
+
+      <!-- BUTTON -->
+
+      <a href="#info" class="enter-button">
+        Visit Pufflet
+      </a>
+
+
+    </div>
+
+  </section>
+
+
+
+  <!-- =========================================
+       SIMPLE COMPANY / CONTACT INFO
+  ========================================== -->
+
+  <section class="info-section" id="info">
+
+    <div class="info-top">
+
+
+      <!-- BRAND -->
+
+      <div>
+
+        <div class="info-brand">
+          Pufflet Cafe
+        </div>
+
+      </div>
+
+
+
+      <!-- ABOUT -->
+
+      <div>
+
+        <div class="info-title">
+          About Pufflet
+        </div>
+
+        <p class="info-text">
+          좋은 커피와 디저트,<br>
+          그리고 조금 더 느린 시간을 위한 공간.<br>
+          Pufflet Cafe입니다.
         </p>
 
-        <div class="mt-8 flex flex-wrap gap-3">
-          <a href="#visit" class="bg-amber-600 text-white px-6 py-3 rounded-2xl font-semibold hover:opacity-90">
-            위치 보기
-          </a>
-          <a href="#gallery" class="border border-stone-300 px-6 py-3 rounded-2xl font-semibold hover:bg-white">
-            사진 보기
-          </a>
-        </div>
       </div>
+
+
+
+      <!-- CONTACT -->
 
       <div>
-        <img
-          src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=1200&q=80"
-          alt="Pufflet Cafe 대표 이미지"
-          class="w-full h-[460px] object-cover rounded-[28px] shadow-xl"
-        />
-      </div>
-    </div>
-  </section>
 
-  <!-- About -->
-  <section id="about" class="px-6 py-16">
-    <div class="max-w-5xl mx-auto text-center">
-      <p class="text-sm font-semibold text-amber-700 mb-3">About</p>
-      <h2 class="text-3xl md:text-4xl font-bold">작지만 오래 머물고 싶은 카페</h2>
-      <p class="mt-6 text-stone-600 leading-8 max-w-3xl mx-auto">
-        Pufflet Cafe는 커피 한 잔과 디저트, 그리고 기분 좋은 여백을 담은 공간입니다.
-        혼자 와도 좋고, 누군가와 함께 와도 편안한 분위기를 만들고 싶었어요.
-        조용히 쉬어가고 싶은 날, 가볍게 들르기 좋은 카페예요.
-      </p>
-    </div>
-  </section>
-
-  <!-- Gallery -->
-  <section id="gallery" class="px-6 py-16">
-    <div class="max-w-6xl mx-auto">
-      <div class="flex items-end justify-between mb-8">
-        <div>
-          <p class="text-sm font-semibold text-amber-700 mb-2">Gallery</p>
-          <h2 class="text-3xl font-bold">공간의 무드를 담았어요</h2>
-        </div>
-      </div>
-
-      <div class="grid md:grid-cols-3 gap-6">
-        <img
-          src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=900&q=80"
-          alt="커피 이미지"
-          class="w-full h-80 object-cover rounded-[24px] shadow-md"
-        />
-        <img
-          src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=900&q=80"
-          alt="카페 내부 이미지"
-          class="w-full h-80 object-cover rounded-[24px] shadow-md"
-        />
-        <img
-          src="https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=900&q=80"
-          alt="디저트 이미지"
-          class="w-full h-80 object-cover rounded-[24px] shadow-md"
-        />
-      </div>
-    </div>
-  </section>
-
-  <!-- Visit Info -->
-  <section id="visit" class="px-6 py-16">
-    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-8 items-stretch">
-      <div class="bg-white rounded-[28px] p-8 shadow-lg">
-        <p class="text-sm font-semibold text-amber-700 mb-3">Visit</p>
-        <h2 class="text-3xl font-bold">방문 안내</h2>
-
-        <div class="mt-8 space-y-5 text-stone-700">
-          <div>
-            <p class="text-sm text-stone-500 mb-1">주소</p>
-            <p class="font-medium">서울시 송파구 석촌동 123 Pufflet Cafe</p>
-          </div>
-          <div>
-            <p class="text-sm text-stone-500 mb-1">운영시간</p>
-            <p class="font-medium">매일 11:00 - 21:00</p>
-          </div>
-          <div>
-            <p class="text-sm text-stone-500 mb-1">문의</p>
-            <p class="font-medium">카카오톡 오픈채팅 문의 가능</p>
-          </div>
+        <div class="info-title">
+          Visit & Contact
         </div>
 
-        <div class="mt-8 flex flex-wrap gap-3">
-          <a
-            href="https://map.naver.com/"
-            target="_blank"
-            class="bg-amber-600 text-white px-5 py-3 rounded-2xl font-semibold hover:opacity-90"
-          >
-            네이버 지도 보기
-          </a>
-        
-          <a
-            href="https://open.kakao.com/o/shVSG8oi"
-            target="_blank"
-            class="border border-stone-300 px-5 py-3 rounded-2xl font-semibold hover:bg-stone-50"
-          >
-            카카오 문의
-          </a>
-          <a href="pufflet-cafe.html"
-   class="border px-6 py-3 rounded-xl font-semibold hover:bg-neutral-100">
-  카페 소개 보기
-</a>
-        </div>
+        <p class="info-text">
+          서울특별시 마포구 연남동 123-4<br>
+          Mon – Fri 11:00 – 21:00<br>
+          Sat – Sun 10:00 – 22:00<br><br>
+
+          010-1234-5678<br>
+          pufflet@cafe.com
+        </p>
+
       </div>
 
-      <div class="rounded-[28px] overflow-hidden shadow-lg min-h-[420px]">
-        <iframe
-  src="https://www.google.com/maps/embed?pb=..."
-  width="100%"
-  height="100%"
-  style="border:0; min-height:420px;"
-  loading="lazy"
-  referrerpolicy="no-referrer-when-downgrade"
-  class="rounded-[28px]"
-></iframe>
-      </div>
     </div>
+
+
+
+    <!-- FOOTER -->
+
+    <div class="footer-bottom">
+
+      <div>
+        © Pufflet Cafe
+      </div>
+
+
+      <div>
+        Good Coffee · Better Mood
+      </div>
+
+
+      <div class="footer-nav">
+        <a href="#">Instagram</a>
+        <a href="#">Blog</a>
+        <a href="#">Map</a>
+      </div>
+
+    </div>
+
   </section>
 
-  <!-- Footer CTA -->
-  <section class="px-6 py-20">
-    <div class="max-w-5xl mx-auto bg-stone-900 text-white rounded-[32px] px-8 py-14 text-center shadow-2xl">
-      <p class="text-sm font-semibold text-amber-300 mb-3">Pufflet Cafe</p>
-      <h2 class="text-3xl md:text-5xl font-bold leading-tight">
-        오늘, 잠시 쉬어가고 싶다면
-      </h2>
-      <p class="mt-5 text-stone-300 max-w-2xl mx-auto leading-7">
-        향 좋은 커피와 편안한 공간이 기다리고 있어요.  
-        위치를 확인하고 가볍게 들러보세요.
-      </p>
-      <div class="mt-8 flex justify-center flex-wrap gap-3">
-        <a
-          href="https://map.naver.com/"
-          target="_blank"
-          class="bg-amber-500 text-stone-900 px-6 py-3 rounded-2xl font-bold hover:opacity-90"
-        >
-          길찾기
-        </a>
-        <a
-          href="https://open.kakao.com/o/shVSG8oi"
-          target="_blank"
-          class="border border-stone-600 px-6 py-3 rounded-2xl font-semibold hover:bg-stone-800"
-        >
-          문의하기
-        </a>
-      </div>
-    </div>
-  </section>
+
+
+  <!-- =========================================
+       SCROLL ANIMATION
+  ========================================== -->
+
+  <script>
+
+    const stage = document.querySelector(".scroll-stage");
+
+    const coffee = document.querySelector(".coffee-object");
+    const cake = document.querySelector(".cake-object");
+    const drink = document.querySelector(".drink-object");
+
+    const menuLinks = document.querySelector(".menu-links");
+    const enterButton = document.querySelector(".enter-button");
+
+
+    function clamp(value, min, max) {
+      return Math.min(Math.max(value, min), max);
+    }
+
+
+    function rangeProgress(progress, start, end) {
+
+      return clamp(
+        (progress - start) / (end - start),
+        0,
+        1
+      );
+
+    }
+
+
+    function moveObject(element, localProgress, startY, endY, rotation) {
+
+      const y =
+        startY +
+        (endY - startY) *
+        localProgress;
+
+      element.style.opacity =
+        clamp(localProgress * 2.2, 0, 1);
+
+      element.style.transform =
+        `translateY(${y}px) rotate(${rotation}deg)`;
+
+    }
+
+
+    function updateScroll() {
+
+      const rect = stage.getBoundingClientRect();
+
+      const total =
+        stage.offsetHeight -
+        window.innerHeight;
+
+      const current =
+        clamp(
+          -rect.top,
+          0,
+          total
+        );
+
+      const progress =
+        current / total;
+
+
+
+      /*
+      =========================================
+      1. FIRST COFFEE IMAGE
+
+      아래에서 올라옴
+      =========================================
+      */
+
+      const coffeeProgress =
+        rangeProgress(progress, 0.00, 0.38);
+
+      moveObject(
+        coffee,
+        coffeeProgress,
+        window.innerHeight * 0.20,
+        -window.innerHeight * 2.25,
+        -4
+      );
+
+
+
+      /*
+      =========================================
+      2. MENU ICONS
+
+      ★ Coffee가 거의 다 나온 뒤 등장
+      =========================================
+      */
+
+      const menuProgress =
+        rangeProgress(progress, 0.34, 0.43);
+
+      menuLinks.style.opacity =
+        menuProgress;
+
+      menuLinks.style.transform =
+        `translate(
+          -50%,
+          ${80 - (80 * menuProgress)}px
+        )`;
+
+
+
+      /*
+      =========================================
+      3. CAKE
+
+      메뉴 버튼 이후 등장
+      =========================================
+      */
+
+      const cakeProgress =
+        rangeProgress(progress, 0.40, 0.68);
+
+      moveObject(
+        cake,
+        cakeProgress,
+        window.innerHeight * 0.20,
+        -window.innerHeight * 2.10,
+        4
+      );
+
+
+
+      /*
+      =========================================
+      4. SIGNATURE DRINK
+      =========================================
+      */
+
+      const drinkProgress =
+        rangeProgress(progress, 0.66, 0.95);
+
+      moveObject(
+        drink,
+        drinkProgress,
+        window.innerHeight * 0.20,
+        -window.innerHeight * 2.10,
+        -3
+      );
+
+
+
+      /*
+      =========================================
+      FINAL BUTTON
+      =========================================
+      */
+
+      if (progress > 0.82) {
+
+        enterButton.classList.add("visible");
+
+      } else {
+
+        enterButton.classList.remove("visible");
+
+      }
+
+    }
+
+
+    window.addEventListener(
+      "scroll",
+      updateScroll
+    );
+
+    window.addEventListener(
+      "resize",
+      updateScroll
+    );
+
+
+    updateScroll();
+
+  </script>
+
 
 </body>
 </html>
