@@ -453,19 +453,27 @@
         font-size: 25px;
       }
 
-      .main-warning {
-        font-size: 14px;
+      .main-title {
+        font-size: clamp(58px, 19vw, 96px);
+        letter-spacing: -4px;
+        line-height: 0.75;
+        white-space: nowrap;
       }
 
-      .main-title {
-        font-size: clamp(75px, 23vw, 130px);
+      .main-copy {
+        top: 42%;
+        width: 96%;
+      }
 
-        letter-spacing: -6px;
+      .main-warning {
+        font-size: 11px;
+        letter-spacing: -0.4px;
+        margin-bottom: 20px;
       }
 
       .coffee-object {
-        width: 75vw;
-        left: -15%;
+        width: 68vw;
+        left: -10%;
       }
 
       .cake-object {
@@ -498,17 +506,55 @@
         font-size: 9px;
       }
 
+      .menu-links {
+        width: 100%;
+        bottom: 48px;
+
+        justify-content: center;
+        gap: 16px;
+
+        padding: 0 12px;
+      }
+
+      .link-coffee {
+        font-size: 24px;
+      }
+
+      .link-dessert {
+        font-size: 24px;
+      }
+
+      .link-signature {
+        font-size: 20px;
+      }
+
+      .link-visit {
+        font-size: 26px;
+      }
 
       /* INFO */
 
       .info-section {
         padding: 40px 25px;
+        text-align: center;
       }
 
       .info-top {
         grid-template-columns: 1fr;
-
         gap: 35px;
+        justify-items: center;
+      }
+
+      .info-brand {
+        text-align: center;
+      }
+
+      .info-text {
+        text-align: center;
+      }
+
+      .info-links {
+        align-items: center;
       }
 
       .footer-bottom {
